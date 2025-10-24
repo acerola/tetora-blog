@@ -1,4 +1,4 @@
-import { getPostBySlug, getPostSlugs } from "../../../posts";
+import { getPostBySlug, getPostSlugs } from "@/posts";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
 

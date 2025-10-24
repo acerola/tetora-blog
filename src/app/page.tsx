@@ -12,7 +12,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
 	return (
 		<main className="max-w-2xl mx-auto py-10 px-4">
-			<h1 className="text-4xl font-bold mb-8">My Blog</h1>
+			<h1 className="text-4xl font-bold mb-8">Tetora's Blog</h1>
 			<ul className="space-y-6">
 				{posts.map((post) => (
 					<li key={post.slug} className="border-b pb-4">
