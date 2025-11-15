@@ -66,7 +66,7 @@ export default async function PostPage({
 				</header>
 
 				<article className="mt-10">
-					<p className="text-xs uppercase tracking-[0.5em] text-slate-400">Tetora Journal</p>
+					<p className="text-xs uppercase tracking-[0.5em] text-slate-400">Tetora's Blog</p>
 					<h1 className="mt-3 text-4xl font-semibold leading-tight md:text-[2.75rem]">
 						{post.meta.title}
 					</h1>

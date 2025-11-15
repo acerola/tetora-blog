@@ -80,7 +80,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 								{posts.map((post, index) => (
 									<li key={post.slug} className="border-b border-slate-200 pb-10 last:border-b-0">
 										<div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.4em] text-slate-400">
-											<span>Tetora Journal</span>
+											<span>Tetora's Blog</span>
 											<span className="h-3 w-px bg-slate-200" aria-hidden="true" />
 											<time dateTime={post.meta.date}>{post.meta.date}</time>
 										</div>
