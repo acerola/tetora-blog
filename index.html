@@ -1,0 +1,66 @@
+---
+layout: default
+pagination:
+  enabled: true
+  per_page: 5
+---
+<div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
+  <section id="posts">
+    {% if paginator.posts == empty %}
+    <div class="rounded-3xl border border-dashed border-slate-300 bg-slate-50/80 p-10 text-center text-slate-500">
+      No entries yet — the journal opens soon.
+    </div>
+    {% else %}
+    <ul class="space-y-10">
+      {% for post in paginator.posts %}
+      <li class="border-b border-slate-200 pb-10 last:border-b-0">
+        <div class="flex flex-wrap items-center gap-4 text-xs uppercase text-slate-400">
+          <span>Tetora's Blog</span>
+          <span class="h-3 w-px bg-slate-200" aria-hidden="true"></span>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        </div>
+        <h2 class="mt-3 text-3xl font-semibold leading-tight text-slate-900">
+          <a class="transition hover:text-[#fc4d50]" href="{{ post.url | relative_url }}">
+            {{ post.title }}
+          </a>
+        </h2>
+        <p class="mt-3 text-base text-slate-600">{{ post.description }}</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+          <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ post.url | relative_url }}">
+            Read article <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if paginator.total_pages > 1 %}
+    <nav class="mt-12 flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-500" aria-label="Pagination">
+      {% if paginator.previous_page %}
+      <a class="rounded-full border border-slate-200 px-4 py-2 text-slate-700 transition hover:border-[#fc4d50] hover:text-[#fc4d50]"
+         href="{{ paginator.previous_page_path | relative_url }}">
+        Previous
+      </a>
+      {% endif %}
+      <div class="flex flex-wrap gap-2">
+        {% for page in (1..paginator.total_pages) %}
+        <a class="rounded-full px-3 py-1 text-xs {% if page == paginator.page %}bg-[#fc4d50] text-white{% else %}border border-transparent text-slate-500 hover:border-slate-200 hover:text-[#fc4d50]{% endif %}"
+           href="{{ paginator.paginate_path | replace: ':num', page | relative_url }}">
+          {{ page }}
+        </a>
+        {% endfor %}
+      </div>
+      {% if paginator.next_page %}
+      <a class="rounded-full border border-slate-200 px-4 py-2 text-slate-700 transition hover:border-[#fc4d50] hover:text-[#fc4d50]"
+         href="{{ paginator.next_page_path | relative_url }}">
+        Next
+      </a>
+      {% endif %}
+      <p class="w-full text-xs font-normal text-slate-400 md:w-auto">
+        Showing {{ paginator.posts | size }} of {{ paginator.total_posts }} notes
+      </p>
+    </nav>
+    {% endif %}
+  </section>
+</div>
