@@ -26,3 +26,14 @@ defaults:
       path: ""
     values:
       layout: default
+
+# Giscus Comments Configuration
+# To enable comments:
+# 1. Go to https://giscus.app
+# 2. Enter your repo and configure settings
+# 3. Copy the values below from the generated script
+giscus:
+  repo: ""                    # e.g., "username/repo"
+  repo_id: ""                 # Copy from giscus.app
+  category: "Announcements"   # Or your preferred category
+  category_id: ""             # Copy from giscus.app

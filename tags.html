@@ -1,0 +1,29 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+<div class="mt-10">
+  <p class="text-xs uppercase text-slate-400 dark:text-slate-500">Browse by</p>
+  <h1 class="mt-3 text-4xl font-semibold leading-tight md:text-[2.75rem]">Tags</h1>
+  <p class="mt-4 text-base text-slate-500 dark:text-slate-400">{{ site.tags.size }} tag{% if site.tags.size != 1 %}s{% endif %} across all posts</p>
+</div>
+
+<section class="mt-10">
+  <div class="flex flex-wrap gap-3">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+    <a href="{{ '/tags/' | append: tag[0] | relative_url }}"
+       class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:border-[#fc4d50] hover:text-[#fc4d50]">
+      #{{ tag[0] }}
+      <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2 py-0.5 text-xs text-slate-500 dark:text-slate-400">{{ tag[1].size }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="mt-12 flex flex-col gap-4 border-t border-slate-200 dark:border-slate-800 pt-6 text-sm text-slate-500 dark:text-slate-400 md:flex-row md:items-center md:justify-between">
+  <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ '/' | relative_url }}">
+    <span aria-hidden="true">&larr;</span> Back to all posts
+  </a>
+</section>

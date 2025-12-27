@@ -29,9 +29,10 @@ a {
   width: 100%;
 }
 
-/* Smooth scroll behavior */
+/* Smooth scroll behavior with offset for sticky header */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 /* Header shadow on scroll - can be enhanced with JS later */

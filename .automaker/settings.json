@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "theme": "dracula",
+  "currentWorktree": {
+    "path": null,
+    "branch": "main"
+  },
+  "worktrees": [
+    {
+      "path": "C:/Users/Oxymoron/Downloads/source/tetora-blog",
+      "branch": "main",
+      "isMain": true,
+      "isCurrent": true,
+      "hasWorktree": true,
+      "hasChanges": true,
+      "changedFilesCount": 6
+    }
+  ]
+}
