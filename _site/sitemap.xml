@@ -8,6 +8,12 @@
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/categories/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/categories/general/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/tags/getting-started/</loc>
 </url>
 <url>
