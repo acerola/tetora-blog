@@ -1,0 +1,11 @@
+---
+layout: default
+lang: ko
+permalink: /ko/
+pagination:
+  enabled: true
+  per_page: 5
+  collection: posts
+  where_exp: "post.lang == 'ko' and post.hidden != true"
+---
+{% include home-content.html %}

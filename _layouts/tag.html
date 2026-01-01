@@ -1,19 +1,23 @@
 ---
 layout: default
 ---
+{% assign current_lang = page.lang | default: site.default_lang %}
+{% assign t = site.data.translations[current_lang] %}
+{% assign lang_prefix = "/" | append: current_lang %}
+
 <div class="mt-10">
-  <p class="text-xs uppercase text-slate-400 dark:text-slate-500">Posts tagged</p>
+  <p class="text-xs uppercase text-slate-400 dark:text-slate-500">{{ t.tags.posts_tagged }}</p>
   <h1 class="mt-3 text-4xl font-semibold leading-tight md:text-[2.75rem]">#{{ page.tag }}</h1>
-  <p class="mt-4 text-base text-slate-500 dark:text-slate-400">{{ site.tags[page.tag].size }} post{% if site.tags[page.tag].size != 1 %}s{% endif %}</p>
+  {% assign tag_posts = site.tags[page.tag] | where: "lang", current_lang | where_exp: "post", "post.hidden != true" %}
+  <p class="mt-4 text-base text-slate-500 dark:text-slate-400">{{ tag_posts.size }} {{ t.common.post_plural }}</p>
 </div>
 
 <section id="posts" class="mt-10">
   <ul class="space-y-10">
-    {% assign tag_posts = site.tags[page.tag] %}
     {% for post in tag_posts %}
     <li class="border-b border-slate-200 dark:border-slate-800 pb-10 last:border-b-0">
       <div class="flex flex-wrap items-center gap-4 text-xs uppercase text-slate-400 dark:text-slate-500">
-        <span>Tetora's Blog</span>
+        <span>{{ t.site.title }}</span>
         <span class="h-3 w-px bg-slate-200 dark:bg-slate-700" aria-hidden="true"></span>
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
       </div>
@@ -25,7 +29,7 @@ layout: default
       <p class="mt-3 text-base text-slate-600 dark:text-slate-400">{{ post.description }}</p>
       <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
         <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ post.url | relative_url }}">
-          Read article <span aria-hidden="true">&rarr;</span>
+          {{ t.post.read_article }} <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
     </li>
@@ -34,7 +38,7 @@ layout: default
 </section>
 
 <section class="mt-12 flex flex-col gap-4 border-t border-slate-200 dark:border-slate-800 pt-6 text-sm text-slate-500 dark:text-slate-400 md:flex-row md:items-center md:justify-between">
-  <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ '/tags' | relative_url }}">
-    <span aria-hidden="true">&larr;</span> View all tags
+  <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ lang_prefix | append: '/tags' | relative_url }}">
+    <span aria-hidden="true">&larr;</span> {{ t.tags.view_all }}
   </a>
 </section>

@@ -6,6 +6,13 @@ permalink: /posts/:slug/
 markdown: kramdown
 theme: null
 
+# i18n Configuration
+default_lang: en
+languages:
+  - en
+  - ko
+  - ja
+
 pagination:
   enabled: true
   per_page: 5
@@ -26,6 +33,12 @@ defaults:
       path: ""
     values:
       layout: default
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: post
+      hidden: false
 
 # Giscus Comments Configuration
 # To enable comments:

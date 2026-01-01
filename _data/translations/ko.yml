@@ -1,0 +1,56 @@
+# Korean UI translations
+site:
+  title: "테토라 블로그"
+  description: "조용한 개발 노트"
+
+nav:
+  blog: "블로그"
+  writing: "글"
+  about: "소개"
+  contact: "연락처"
+  toggle_dark_mode: "다크 모드 전환"
+
+post:
+  min_read: "분 소요"
+  back_to_all: "전체 글 목록으로"
+  draft: "초안"
+  draft_notice: "초안 - 이 글은 공개 목록에 표시되지 않습니다"
+  read_article: "글 읽기"
+  no_entries: "아직 글이 없습니다 - 곧 시작됩니다."
+
+categories:
+  title: "카테고리"
+  singular: "카테고리"
+  plural: "카테고리"
+  browse_by: "분류별 보기"
+  view_all: "모든 카테고리 보기"
+  latest: "최신"
+
+tags:
+  title: "태그"
+  singular: "태그"
+  plural: "태그"
+  view_all: "모든 태그 보기"
+  posts_tagged: "태그된 글"
+
+pagination:
+  previous: "이전"
+  next: "다음"
+  showing: "표시 중"
+  of: "/"
+  notes: "개 글"
+
+sidebar:
+  categories: "카테고리"
+  tags: "태그"
+  quick_links: "빠른 링크"
+  all_categories: "모든 카테고리"
+  rss_feed: "RSS 피드"
+
+footer:
+  copyright: "테토라 블로그. 모든 권리 보유."
+
+common:
+  post_singular: "개 글"
+  post_plural: "개 글"
+  across_all: "전체 글 중"

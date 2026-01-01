@@ -1,0 +1,56 @@
+# English UI translations
+site:
+  title: "Tetora's Blog"
+  description: "Notes on calm building"
+
+nav:
+  blog: "Blog"
+  writing: "Writing"
+  about: "About"
+  contact: "Contact"
+  toggle_dark_mode: "Toggle dark mode"
+
+post:
+  min_read: "min read"
+  back_to_all: "Back to all posts"
+  draft: "Draft"
+  draft_notice: "Draft - This post is hidden from public listings"
+  read_article: "Read article"
+  no_entries: "No entries yet - the journal opens soon."
+
+categories:
+  title: "Categories"
+  singular: "category"
+  plural: "categories"
+  browse_by: "Browse by"
+  view_all: "View all categories"
+  latest: "Latest"
+
+tags:
+  title: "Tags"
+  singular: "tag"
+  plural: "tags"
+  view_all: "View all tags"
+  posts_tagged: "Posts tagged"
+
+pagination:
+  previous: "Previous"
+  next: "Next"
+  showing: "Showing"
+  of: "of"
+  notes: "notes"
+
+sidebar:
+  categories: "Categories"
+  tags: "Tags"
+  quick_links: "Quick Links"
+  all_categories: "All Categories"
+  rss_feed: "RSS Feed"
+
+footer:
+  copyright: "Tetora's blog. All rights reserved."
+
+common:
+  post_singular: "post"
+  post_plural: "posts"
+  across_all: "across all posts"

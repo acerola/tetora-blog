@@ -1,0 +1,56 @@
+# Japanese UI translations
+site:
+  title: "テトラのブログ"
+  description: "静かな開発ノート"
+
+nav:
+  blog: "ブログ"
+  writing: "記事"
+  about: "紹介"
+  contact: "連絡先"
+  toggle_dark_mode: "ダークモード切替"
+
+post:
+  min_read: "分で読めます"
+  back_to_all: "全記事一覧へ"
+  draft: "下書き"
+  draft_notice: "下書き - この記事は公開リストに表示されません"
+  read_article: "記事を読む"
+  no_entries: "まだ記事がありません - 近日公開予定です。"
+
+categories:
+  title: "カテゴリー"
+  singular: "カテゴリー"
+  plural: "カテゴリー"
+  browse_by: "分類別に見る"
+  view_all: "全カテゴリーを見る"
+  latest: "最新"
+
+tags:
+  title: "タグ"
+  singular: "タグ"
+  plural: "タグ"
+  view_all: "全タグを見る"
+  posts_tagged: "タグ付き記事"
+
+pagination:
+  previous: "前へ"
+  next: "次へ"
+  showing: "表示中"
+  of: "/"
+  notes: "件"
+
+sidebar:
+  categories: "カテゴリー"
+  tags: "タグ"
+  quick_links: "クイックリンク"
+  all_categories: "全カテゴリー"
+  rss_feed: "RSSフィード"
+
+footer:
+  copyright: "テトラのブログ. All rights reserved."
+
+common:
+  post_singular: "件"
+  post_plural: "件"
+  across_all: "全記事中"

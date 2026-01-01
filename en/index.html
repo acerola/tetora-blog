@@ -1,0 +1,11 @@
+---
+layout: default
+lang: en
+permalink: /en/
+pagination:
+  enabled: true
+  per_page: 5
+  collection: posts
+  where_exp: "post.lang == 'en' and post.hidden != true"
+---
+{% include home-content.html %}

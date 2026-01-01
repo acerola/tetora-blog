@@ -1,20 +1,75 @@
+{% assign current_lang = page.lang | default: site.default_lang %}
+{% assign t = site.data.translations[current_lang] %}
+{% assign lang_prefix = "/" | append: current_lang %}
+
 <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800 transition-colors">
   <div class="mx-auto max-w-5xl px-6 py-4 lg:px-0">
     <div class="flex items-center justify-between">
-      <a href="{{ '/' | relative_url }}" class="group flex items-center gap-3">
+      <a href="{{ lang_prefix | append: '/' | relative_url }}" class="group flex items-center gap-3">
         <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#fc4d50] to-[#ff7b7d] text-white font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow">
           T
         </div>
         <div>
-          <p class="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-medium">Blog</p>
+          <p class="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-medium">{{ t.nav.blog }}</p>
           <p class="text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-[#fc4d50] transition-colors">Tetora</p>
         </div>
       </a>
-      <nav class="flex items-center gap-6">
-        <a href="{{ '/#posts' | relative_url }}" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Writing</a>
-        <a href="{{ '/about' | relative_url }}" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">About</a>
-        <a href="mailto:hello@tetora.blog" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Contact</a>
-        <button id="theme-toggle" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle dark mode">
+      <nav class="flex items-center gap-4">
+        <a href="{{ lang_prefix | append: '/#posts' | relative_url }}" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">{{ t.nav.writing }}</a>
+        <a href="{{ lang_prefix | append: '/about' | relative_url }}" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">{{ t.nav.about }}</a>
+        <a href="mailto:hello@tetora.blog" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">{{ t.nav.contact }}</a>
+
+        <!-- Language Switcher -->
+        <div class="relative" x-data="{ open: false }">
+          <button @click="open = !open"
+                  class="flex items-center gap-1 rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  aria-label="Select language">
+            <span>{{ site.data.languages[current_lang].icon }}</span>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div x-show="open"
+               @click.away="open = false"
+               x-transition:enter="transition ease-out duration-100"
+               x-transition:enter-start="opacity-0 scale-95"
+               x-transition:enter-end="opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-75"
+               x-transition:leave-start="opacity-100 scale-100"
+               x-transition:leave-end="opacity-0 scale-95"
+               class="absolute right-0 mt-2 w-32 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg py-1 z-50">
+            {% for lang_code in site.languages %}
+            {% assign lang_data = site.data.languages[lang_code] %}
+
+            {% comment %} Determine the URL for this language {% endcomment %}
+            {% if page.ref %}
+              {% assign translated_post = site.posts | where: "ref", page.ref | where: "lang", lang_code | first %}
+              {% if translated_post %}
+                {% assign lang_url = translated_post.url %}
+              {% else %}
+                {% assign lang_url = "/" | append: lang_code | append: "/" %}
+              {% endif %}
+            {% else %}
+              {% assign lang_url = "/" | append: lang_code | append: "/" %}
+            {% endif %}
+
+            <a href="{{ lang_url | relative_url }}"
+               @click="open = false"
+               class="flex items-center gap-3 px-3 py-2 text-sm {% if lang_code == current_lang %}bg-slate-100 dark:bg-slate-700 text-[#fc4d50]{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700{% endif %}">
+              <span class="font-medium">{{ lang_data.icon }}</span>
+              <span>{{ lang_data.label }}</span>
+              {% if lang_code == current_lang %}
+              <svg class="ml-auto h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% endif %}
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <button id="theme-toggle" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="{{ t.nav.toggle_dark_mode }}">
           <svg id="theme-icon-light" class="hidden dark:block h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
           </svg>

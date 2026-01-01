@@ -1,13 +1,29 @@
 <!doctype html>
-<html lang="en" class="light">
+{% assign current_lang = page.lang | default: site.default_lang %}
+{% assign t = site.data.translations[current_lang] %}
+{% assign lang_prefix = "/" | append: current_lang %}
+<html lang="{{ current_lang }}" class="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title | default: site.title }}</title>
-  <meta name="description" content="{{ page.description | default: site.description }}">
+  <title>{{ page.title | default: t.site.title }}</title>
+  <meta name="description" content="{{ page.description | default: t.site.description }}">
+
+  <!-- hreflang tags for SEO -->
+  {% if page.ref %}
+    {% for lang in site.languages %}
+      {% assign alt_post = site.posts | where: "ref", page.ref | where: "lang", lang | first %}
+      {% if alt_post %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ alt_post.url | absolute_url }}" />
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}/en/" />
+
   {% seo %}
   <link rel="icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',

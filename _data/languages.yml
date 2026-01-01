@@ -1,0 +1,9 @@
+en:
+  label: "English"
+  icon: "EN"
+ko:
+  label: "한국어"
+  icon: "KO"
+ja:
+  label: "日本語"
+  icon: "JA"
