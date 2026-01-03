@@ -14,9 +14,7 @@ languages:
   - ja
 
 pagination:
-  enabled: true
-  per_page: 5
-  permalink: "/page:num/"
+  enabled: false
 
 plugins:
   - jekyll-paginate-v2
@@ -25,8 +23,9 @@ plugins:
   - jekyll-sitemap
 
 collections:
-  posts:
+  articles:
     output: true
+    permalink: /posts/:path/
 
 defaults:
   - scope:
@@ -34,8 +33,8 @@ defaults:
     values:
       layout: default
   - scope:
-      path: "_posts"
-      type: "posts"
+      path: "_articles"
+      type: "articles"
     values:
       layout: post
       hidden: false

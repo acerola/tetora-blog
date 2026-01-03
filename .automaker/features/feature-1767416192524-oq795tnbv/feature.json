@@ -1,0 +1,22 @@
+{
+  "category": "Uncategorized",
+  "description": "in our current version , we kinda show every 3 language version of article \nbut , we want to show only one for one article by currently set language\nand when we read article , maybe we can put some option for article layout, to select lang version of article ",
+  "title": "Update article display to show single language version per user preference",
+  "images": [],
+  "imagePaths": [],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "branchName": "main",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "titleGenerating": false,
+  "status": "waiting_approval",
+  "id": "feature-1767416192524-oq795tnbv",
+  "startedAt": "2026-01-03T04:56:33.562Z",
+  "updatedAt": "2026-01-03T05:01:39.655Z",
+  "justFinishedAt": "2026-01-03T05:01:39.655Z"
+}

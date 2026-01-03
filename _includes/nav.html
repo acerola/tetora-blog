@@ -30,7 +30,8 @@
             </svg>
           </button>
 
-          <div x-show="open"
+          <div x-cloak
+               x-show="open"
                @click.away="open = false"
                x-transition:enter="transition ease-out duration-100"
                x-transition:enter-start="opacity-0 scale-95"
@@ -44,7 +45,7 @@
 
             {% comment %} Determine the URL for this language {% endcomment %}
             {% if page.ref %}
-              {% assign translated_post = site.posts | where: "ref", page.ref | where: "lang", lang_code | first %}
+              {% assign translated_post = site.articles | where: "ref", page.ref | where: "lang", lang_code | first %}
               {% if translated_post %}
                 {% assign lang_url = translated_post.url %}
               {% else %}

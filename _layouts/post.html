@@ -45,17 +45,30 @@ layout: default
 
   <!-- Language switcher for posts -->
   {% if page.ref %}
-  <div class="mt-4 flex items-center gap-2">
-    {% for lang in site.languages %}
-      {% assign alt_post = site.posts | where: "ref", page.ref | where: "lang", lang | first %}
-      {% if alt_post %}
-        <a href="{{ alt_post.url | relative_url }}"
-           class="rounded-full px-3 py-1 text-xs font-medium {% if lang == current_lang %}bg-[#fc4d50] text-white{% else %}bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700{% endif %} transition">
-          {{ site.data.languages[lang].icon }}
-        </a>
-      {% endif %}
-    {% endfor %}
+  {% assign available_translations = site.articles | where: "ref", page.ref %}
+  {% if available_translations.size > 1 %}
+  <div class="mt-4 flex items-center gap-3" x-data="{ showLangMenu: false }">
+    <span class="text-xs text-slate-500 dark:text-slate-400">{{ t.post.read_in }}:</span>
+    <div class="flex items-center gap-2">
+      {% for lang in site.languages %}
+        {% assign alt_post = site.articles | where: "ref", page.ref | where: "lang", lang | first %}
+        {% if alt_post %}
+          <a href="{{ alt_post.url | relative_url }}"
+             class="group flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium {% if lang == current_lang %}bg-[#fc4d50] text-white shadow-sm{% else %}bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200{% endif %} transition-all duration-200"
+             title="{{ site.data.languages[lang].label }}">
+            <span class="font-semibold">{{ site.data.languages[lang].icon }}</span>
+            <span class="hidden sm:inline">{{ site.data.languages[lang].label }}</span>
+            {% if lang == current_lang %}
+            <svg class="h-3.5 w-3.5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            {% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
+  {% endif %}
   {% endif %}
 
   {% if page.description %}

@@ -16,6 +16,7 @@ post:
   draft: "초안"
   draft_notice: "초안 - 이 글은 공개 목록에 표시되지 않습니다"
   read_article: "글 읽기"
+  read_in: "다른 언어로 읽기"
   no_entries: "아직 글이 없습니다 - 곧 시작됩니다."
 
 categories:
@@ -45,6 +46,7 @@ sidebar:
   tags: "태그"
   quick_links: "빠른 링크"
   all_categories: "모든 카테고리"
+  all_posts: "전체"
   rss_feed: "RSS 피드"
 
 footer:

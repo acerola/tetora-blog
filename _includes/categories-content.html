@@ -1,13 +1,12 @@
 {% assign current_lang = page.lang | default: site.default_lang %}
 {% assign t = site.data.translations[current_lang] %}
-{% assign lang_prefix = "/" | append: current_lang %}
+{% assign visible_posts = site.articles | where_exp: "post", "post.hidden != true" %}
 
 <div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
   <div>
     <div class="mb-10">
       <p class="text-xs uppercase text-slate-400 dark:text-slate-500">{{ t.categories.browse_by }}</p>
       <h1 class="mt-3 text-4xl font-semibold leading-tight md:text-[2.75rem]">{{ t.categories.title }}</h1>
-      {% assign visible_posts = site.posts | where: "lang", current_lang | where_exp: "post", "post.hidden != true" %}
       {% assign categories = visible_posts | map: "category" | compact | uniq %}
       <p class="mt-4 text-base text-slate-500 dark:text-slate-400">{{ categories.size }} {{ t.categories.plural }} {{ t.common.across_all }}</p>
     </div>
@@ -16,8 +15,8 @@
       {% assign categories = visible_posts | map: "category" | compact | uniq | sort %}
       {% for category in categories %}
       {% assign count = visible_posts | where: "category", category | size %}
-      {% assign latest_post = visible_posts | where: "category", category | first %}
-      <a href="{{ lang_prefix | append: '/categories/' | append: category | downcase | relative_url }}"
+      {% assign latest_post = visible_posts | where: "category", category | sort: "date" | reverse | first %}
+      <a href="/categories/{{ category | downcase }}/"
          class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/50 p-6 transition hover:border-[#fc4d50] hover:shadow-lg">
         <div class="flex items-start justify-between">
           <div>
@@ -42,7 +41,7 @@
     </section>
 
     <section class="mt-12 flex flex-col gap-4 border-t border-slate-200 dark:border-slate-800 pt-6 text-sm text-slate-500 dark:text-slate-400 md:flex-row md:items-center md:justify-between">
-      <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ lang_prefix | append: '/' | relative_url }}">
+      <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="/">
         <span aria-hidden="true">&larr;</span> {{ t.post.back_to_all }}
       </a>
     </section>

@@ -16,6 +16,7 @@ post:
   draft: "Draft"
   draft_notice: "Draft - This post is hidden from public listings"
   read_article: "Read article"
+  read_in: "Read in"
   no_entries: "No entries yet - the journal opens soon."
 
 categories:
@@ -45,6 +46,7 @@ sidebar:
   tags: "Tags"
   quick_links: "Quick Links"
   all_categories: "All Categories"
+  all_posts: "All"
   rss_feed: "RSS Feed"
 
 footer:

@@ -1,7 +1,6 @@
 {% assign current_lang = page.lang | default: site.default_lang %}
 {% assign t = site.data.translations[current_lang] %}
-{% assign lang_prefix = "/" | append: current_lang %}
-{% assign visible_posts = site.posts | where: "lang", current_lang | where_exp: "post", "post.hidden != true" %}
+{% assign visible_posts = site.articles | where_exp: "post", "post.hidden != true" %}
 {% assign visible_tags = visible_posts | map: "tags" | join: "," | split: "," | uniq | sort %}
 
 <div class="mt-10">
@@ -20,7 +19,7 @@
         {% assign tag_count = tag_count | plus: 1 %}
       {% endif %}
     {% endfor %}
-    <a href="{{ lang_prefix | append: '/tags/' | append: tag_name | relative_url }}"
+    <a href="/tags/{{ tag_name }}/"
        class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:border-[#fc4d50] hover:text-[#fc4d50]">
       #{{ tag_name }}
       <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2 py-0.5 text-xs text-slate-500 dark:text-slate-400">{{ tag_count }}</span>
@@ -31,7 +30,7 @@
 </section>
 
 <section class="mt-12 flex flex-col gap-4 border-t border-slate-200 dark:border-slate-800 pt-6 text-sm text-slate-500 dark:text-slate-400 md:flex-row md:items-center md:justify-between">
-  <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ lang_prefix | append: '/' | relative_url }}">
+  <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="/">
     <span aria-hidden="true">&larr;</span> {{ t.post.back_to_all }}
   </a>
 </section>
