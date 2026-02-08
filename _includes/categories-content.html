@@ -1,6 +1,7 @@
 {% assign current_lang = page.lang | default: site.default_lang %}
 {% assign t = site.data.translations[current_lang] %}
-{% assign visible_posts = site.articles | where_exp: "post", "post.hidden != true" %}
+{% assign lang_prefix = "/" | append: current_lang %}
+{% assign visible_posts = site.articles | where: "lang", current_lang | where_exp: "post", "post.hidden != true" %}
 
 <div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
   <div>
