@@ -1,5 +1,6 @@
 ---
 layout: category
 category: Programming
-permalink: /categories/programming/
+lang: en
+permalink: /en/categories/programming/
 ---

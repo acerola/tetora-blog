@@ -1,5 +1,6 @@
 ---
 layout: tag
 tag: welcome
-permalink: /tags/welcome/
+lang: en
+permalink: /en/tags/welcome/
 ---

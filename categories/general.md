@@ -1,5 +1,6 @@
 ---
 layout: category
 category: General
-permalink: /categories/general/
+lang: en
+permalink: /en/categories/general/
 ---

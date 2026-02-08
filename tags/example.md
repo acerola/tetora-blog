@@ -1,5 +1,6 @@
 ---
 layout: tag
 tag: example
-permalink: /tags/example/
+lang: en
+permalink: /en/tags/example/
 ---

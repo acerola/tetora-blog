@@ -1,5 +1,6 @@
 ---
 layout: category
 category: Japanese
-permalink: /categories/japanese/
+lang: en
+permalink: /en/categories/japanese/
 ---

@@ -1,5 +1,6 @@
 ---
 layout: tag
 tag: draft
-permalink: /tags/draft/
+lang: en
+permalink: /en/tags/draft/
 ---

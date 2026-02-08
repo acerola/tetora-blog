@@ -1,5 +1,6 @@
 ---
 layout: tag
 tag: getting-started
-permalink: /tags/getting-started/
+lang: en
+permalink: /en/tags/getting-started/
 ---

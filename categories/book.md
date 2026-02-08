@@ -1,5 +1,6 @@
 ---
 layout: category
 category: Book
-permalink: /categories/book/
+lang: en
+permalink: /en/categories/book/
 ---

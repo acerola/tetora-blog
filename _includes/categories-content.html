@@ -16,7 +16,7 @@
       {% for category in categories %}
       {% assign count = visible_posts | where: "category", category | size %}
       {% assign latest_post = visible_posts | where: "category", category | sort: "date" | reverse | first %}
-      <a href="/categories/{{ category | downcase }}/"
+      <a href="{{ lang_prefix | append: '/categories/' | append: category | downcase | append: '/' | relative_url }}"
          class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/50 p-6 transition hover:border-[#fc4d50] hover:shadow-lg">
         <div class="flex items-start justify-between">
           <div>
@@ -41,7 +41,7 @@
     </section>
 
     <section class="mt-12 flex flex-col gap-4 border-t border-slate-200 dark:border-slate-800 pt-6 text-sm text-slate-500 dark:text-slate-400 md:flex-row md:items-center md:justify-between">
-      <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="/">
+      <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ lang_prefix | append: '/' | relative_url }}">
         <span aria-hidden="true">&larr;</span> {{ t.post.back_to_all }}
       </a>
     </section>

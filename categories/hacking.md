@@ -1,5 +1,6 @@
 ---
 layout: category
 category: Hacking
-permalink: /categories/hacking/
+lang: en
+permalink: /en/categories/hacking/
 ---
