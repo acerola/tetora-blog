@@ -22,6 +22,12 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+feed:
+  path: /posts-feed.xml
+  collections:
+    articles:
+      path: /feed.xml
+
 collections:
   articles:
     output: true
