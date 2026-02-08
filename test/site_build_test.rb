@@ -135,6 +135,24 @@ runner.run("taxonomy index and detail routes are localized") do
   end
 end
 
+runner.run("taxonomy index aggregation is scoped to the active language") do
+  en_categories = read_output.call("en/categories/index.html")
+  ja_categories = read_output.call("ja/categories/index.html")
+  ko_categories = read_output.call("ko/categories/index.html")
+  en_tags = read_output.call("en/tags/index.html")
+
+  runner.assert_includes(en_categories, "2 categories")
+  runner.assert_includes(en_categories, ">1 posts<")
+  runner.refute_includes(en_categories, ">3 posts<")
+
+  runner.assert_includes(ja_categories, "2 カテゴリー")
+  runner.assert_includes(ko_categories, "2 카테고리")
+
+  runner.assert_includes(en_tags, "#programming")
+  runner.assert_includes(en_tags, ">1</span>")
+  runner.refute_includes(en_tags, ">3</span>")
+end
+
 runner.run("taxonomy links are language-aware") do
   en_home = read_output.call("en/index.html")
   ja_home = read_output.call("ja/index.html")
@@ -148,6 +166,14 @@ runner.run("taxonomy links are language-aware") do
 
   runner.assert_includes(ko_home, "href=\"/ko/categories/book/\"")
   runner.assert_includes(ko_home, "href=\"/ko/tags/programming/\"")
+end
+
+runner.run("default layout uses local built assets and avoids runtime cdn scripts") do
+  en_home = read_output.call("en/index.html")
+
+  runner.assert_includes(en_home, "href=\"/assets/css/tailwind.css\"")
+  runner.refute_includes(en_home, "https://cdn.tailwindcss.com")
+  runner.refute_includes(en_home, "https://unpkg.com/alpinejs")
 end
 
 puts
