@@ -39,3 +39,11 @@ html {
 header {
   transition: box-shadow 0.2s ease;
 }
+
+.language-switcher summary {
+  list-style: none;
+}
+
+.language-switcher summary::-webkit-details-marker {
+  display: none;
+}

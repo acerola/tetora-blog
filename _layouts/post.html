@@ -47,7 +47,7 @@ layout: default
   {% if page.ref %}
   {% assign available_translations = site.articles | where: "ref", page.ref %}
   {% if available_translations.size > 1 %}
-  <div class="mt-4 flex items-center gap-3" x-data="{ showLangMenu: false }">
+  <div class="mt-4 flex items-center gap-3">
     <span class="text-xs text-slate-500 dark:text-slate-400">{{ t.post.read_in }}:</span>
     <div class="flex items-center gap-2">
       {% for lang in site.languages %}

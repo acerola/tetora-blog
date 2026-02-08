@@ -20,26 +20,16 @@
         <a href="mailto:hello@tetora.blog" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">{{ t.nav.contact }}</a>
 
         <!-- Language Switcher -->
-        <div class="relative" x-data="{ open: false }">
-          <button @click="open = !open"
-                  class="flex items-center gap-1 rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                  aria-label="Select language">
-            <span>{{ site.data.languages[current_lang].icon }}</span>
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
+        <div class="relative">
+          <details class="language-switcher group">
+            <summary class="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800">
+              <span>{{ site.data.languages[current_lang].icon }}</span>
+              <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
 
-          <div x-cloak
-               x-show="open"
-               @click.away="open = false"
-               x-transition:enter="transition ease-out duration-100"
-               x-transition:enter-start="opacity-0 scale-95"
-               x-transition:enter-end="opacity-100 scale-100"
-               x-transition:leave="transition ease-in duration-75"
-               x-transition:leave-start="opacity-100 scale-100"
-               x-transition:leave-end="opacity-0 scale-95"
-               class="absolute right-0 mt-2 w-32 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg py-1 z-50">
+            <div class="absolute right-0 z-50 mt-2 w-32 rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
             {% for lang_code in site.languages %}
             {% assign lang_data = site.data.languages[lang_code] %}
 
@@ -56,7 +46,6 @@
             {% endif %}
 
             <a href="{{ lang_url | relative_url }}"
-               @click="open = false"
                class="flex items-center gap-3 px-3 py-2 text-sm {% if lang_code == current_lang %}bg-slate-100 dark:bg-slate-700 text-[#fc4d50]{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700{% endif %}">
               <span class="font-medium">{{ lang_data.icon }}</span>
               <span>{{ lang_data.label }}</span>
@@ -67,7 +56,8 @@
               {% endif %}
             </a>
             {% endfor %}
-          </div>
+            </div>
+          </details>
         </div>
 
         <button id="theme-toggle" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="{{ t.nav.toggle_dark_mode }}">
