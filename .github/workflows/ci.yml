@@ -29,3 +29,6 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+
+      - name: Run test suite
+        run: bundle exec ruby -Itest test/site_build_test.rb

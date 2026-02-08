@@ -66,6 +66,12 @@ bundle exec jekyll build
 
 The static site will be generated in `_site/`.
 
+## Run Tests
+
+```bash
+bundle exec ruby -Itest test/site_build_test.rb
+```
+
 ## Plugins
 
 - [jekyll-paginate-v2](https://github.com/sverrirs/jekyll-paginate-v2) - Pagination
