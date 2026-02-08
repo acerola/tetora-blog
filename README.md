@@ -8,6 +8,7 @@ A personal blog built with [Jekyll](https://jekyllrb.com/). Notes on calm buildi
 
 - Ruby (3.0+)
 - Bundler (`gem install bundler`)
+- Node.js 18+ (for Tailwind asset builds)
 
 ### Installation
 
@@ -28,33 +29,51 @@ Open [http://localhost:4000](http://localhost:4000) to view the site.
 ## Project Structure
 
 ```
-├── _config.yml      # Jekyll configuration
-├── _includes/       # Reusable HTML partials
-├── _layouts/        # Page templates
-├── _posts/          # Blog posts (Markdown)
-├── _site/           # Generated site (do not edit)
-├── assets/          # CSS, images, and other static files
-├── index.html       # Homepage
-├── about.md         # About page
-├── Gemfile          # Ruby dependencies
-└── Gemfile.lock
+├── _articles/                      # Multilingual article collection
+│   └── YYYY-MM-DD-slug/
+│       ├── en.md
+│       ├── ja.md
+│       └── ko.md
+├── _data/                          # Language labels and UI translations
+├── _includes/                      # Reusable HTML partials
+├── _layouts/                       # Page templates
+├── en/ ja/ ko/                     # Language-scoped pages and taxonomy indexes
+├── categories/ tags/               # English taxonomy routes
+├── assets/
+│   └── css/
+│       ├── tailwind.src.css        # Tailwind source directives
+│       ├── tailwind.css            # Built Tailwind output (committed)
+│       └── main.css                # Custom site styles
+├── index.html                      # Root redirect to /en/
+├── _config.yml                     # Jekyll configuration
+├── Gemfile / Gemfile.lock          # Ruby dependencies
+└── package.json / package-lock.json# Tailwind build toolchain
 ```
 
 ## Writing Posts
 
-Create new posts in `_posts/` with the filename format:
+Create a folder per article in `_articles/`:
 
 ```
-YYYY-MM-DD-post-title.md
+_articles/2026-02-08-my-post/
+  en.md
+  ja.md
+  ko.md
 ```
 
-Example front matter:
+Use the same `ref` across translations:
 
 ```yaml
 ---
 layout: post
-title: "Your Post Title"
-date: 2024-01-01
+title: "My Post"
+date: 2026-02-08
+description: "Short summary for cards/feed."
+category: General
+tags: [example]
+lang: en
+ref: my-post
+# hidden: true   # optional draft/hidden mode
 ---
 ```
 
@@ -65,6 +84,19 @@ bundle exec jekyll build
 ```
 
 The static site will be generated in `_site/`.
+
+## Build CSS Assets
+
+```bash
+npm install
+npm run build:css
+```
+
+For active development:
+
+```bash
+npm run watch:css
+```
 
 ## Run Tests
 
