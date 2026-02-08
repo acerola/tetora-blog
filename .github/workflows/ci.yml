@@ -19,9 +19,6 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
-      - name: Prepare lockfile for Linux
-        run: bundle lock --add-platform x86_64-linux
-
       - name: Check site health
         run: bundle exec jekyll doctor
 
