@@ -9,7 +9,9 @@
       "Bash(powershell.exe -Command \"bundle exec jekyll build --trace 2>&1\")",
       "mcp__plugin_serena_serena__activate_project",
       "mcp__plugin_serena_serena__get_current_config",
-      "mcp__plugin_serena_serena__list_dir"
+      "mcp__plugin_serena_serena__list_dir",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": []
   }
