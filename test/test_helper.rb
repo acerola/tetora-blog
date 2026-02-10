@@ -60,8 +60,17 @@ class TestRunner
     raise message unless condition
   end
 
+  def assert_equal(expected, actual, message = nil)
+    default = "Expected #{expected.inspect}, got #{actual.inspect}"
+    assert(expected == actual, message || default)
+  end
+
   def assert_file_exists(path)
     assert(File.exist?(path), "Missing file: #{path}")
+  end
+
+  def refute_file_exists(path)
+    assert(!File.exist?(path), "File should not exist: #{path}")
   end
 
   def assert_includes(content, expected, message = nil)
@@ -72,5 +81,10 @@ class TestRunner
   def refute_includes(content, unexpected, message = nil)
     default = "Expected content not to include: #{unexpected.inspect}"
     assert(!content.include?(unexpected), message || default)
+  end
+
+  def assert_match(pattern, content, message = nil)
+    default = "Expected content to match: #{pattern.inspect}"
+    assert(pattern.match?(content), message || default)
   end
 end
