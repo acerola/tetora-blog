@@ -27,11 +27,6 @@ layout: default
         </a>
       </h2>
       <p class="mt-3 text-base text-slate-600 dark:text-slate-400">{{ post.description }}</p>
-      <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-        <a class="inline-flex items-center gap-2 font-semibold text-[#fc4d50]" href="{{ post.url | relative_url }}">
-          {{ t.post.read_article }} <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
     </li>
     {% endfor %}
   </ul>

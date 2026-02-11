@@ -11,7 +11,8 @@
       "mcp__plugin_serena_serena__get_current_config",
       "mcp__plugin_serena_serena__list_dir",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(ffmpeg:*)"
     ],
     "deny": []
   }

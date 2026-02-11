@@ -1,1 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-03T21:40:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tetora’s Blog</title><subtitle>Notes on calm building</subtitle></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-02-11T02:51:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tetora’s Blog | Articles</title><subtitle>Notes on calm building</subtitle><entry xml:lang="en"><title type="html">Programming Pearls</title><link href="http://localhost:4000/posts/2026-01-01-programming-perls/en/" rel="alternate" type="text/html" title="Programming Pearls" /><published>2026-01-01T00:00:00+09:00</published><updated>2026-01-01T00:00:00+09:00</updated><id>http://localhost:4000/posts/2026-01-01-programming-perls/en</id><content type="html" xml:base="http://localhost:4000/posts/2026-01-01-programming-perls/en/"><![CDATA[<p>A collection of programming insights and techniques.</p>]]></content><author><name></name></author><category term="Book" /><category term="example" /><category term="programming" /><summary type="html"><![CDATA[Notes and insights from the classic programming book.]]></summary></entry><entry xml:lang="ko"><title type="html">프로그래밍 펄</title><link href="http://localhost:4000/posts/2026-01-01-programming-perls/ko/" rel="alternate" type="text/html" title="프로그래밍 펄" /><published>2026-01-01T00:00:00+09:00</published><updated>2026-01-01T00:00:00+09:00</updated><id>http://localhost:4000/posts/2026-01-01-programming-perls/ko</id><content type="html" xml:base="http://localhost:4000/posts/2026-01-01-programming-perls/ko/"><![CDATA[<p>프로그래밍 통찰과 기법 모음입니다.</p>]]></content><author><name></name></author><category term="Book" /><category term="example" /><category term="programming" /><summary type="html"><![CDATA[클래식 프로그래밍 책에서 얻은 노트와 통찰.]]></summary></entry><entry xml:lang="ja"><title type="html">プログラミング・パール</title><link href="http://localhost:4000/posts/2026-01-01-programming-perls/ja/" rel="alternate" type="text/html" title="プログラミング・パール" /><published>2026-01-01T00:00:00+09:00</published><updated>2026-01-01T00:00:00+09:00</updated><id>http://localhost:4000/posts/2026-01-01-programming-perls/ja</id><content type="html" xml:base="http://localhost:4000/posts/2026-01-01-programming-perls/ja/"><![CDATA[<p>プログラミングの洞察とテクニックのコレクションです。</p>]]></content><author><name></name></author><category term="Book" /><category term="example" /><category term="programming" /><summary type="html"><![CDATA[クラシックなプログラミング本からのノートと洞察。]]></summary></entry><entry xml:lang="ko"><title type="html">초안 글 예시</title><link href="http://localhost:4000/posts/2024-06-15-draft-example/ko/" rel="alternate" type="text/html" title="초안 글 예시" /><published>2024-06-15T00:00:00+09:00</published><updated>2024-06-15T00:00:00+09:00</updated><id>http://localhost:4000/posts/2024-06-15-draft-example/ko</id><content type="html" xml:base="http://localhost:4000/posts/2024-06-15-draft-example/ko/"><![CDATA[<p>이것은 숨겨진 글의 예시입니다. 프론트매터에 <code class="language-plaintext highlighter-rouge">hidden: true</code>를 설정하면:</p>
+
+<ol>
+  <li>블로그 홈페이지 목록에 <strong>표시되지 않습니다</strong></li>
+  <li>카테고리나 태그 페이지에 <strong>표시되지 않습니다</strong></li>
+  <li>카테고리/태그 통계에 <strong>집계되지 않습니다</strong></li>
+  <li>미리보기 목적으로 직접 URL을 통해 <strong>여전히 접근 가능합니다</strong></li>
+</ol>
+
+<h2 id="사용-방법">사용 방법</h2>
+
+<p>글을 숨기려면 프론트매터에 <code class="language-plaintext highlighter-rouge">hidden: true</code>를 추가하면 됩니다:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">내</span><span class="nv"> </span><span class="s">초안</span><span class="nv"> </span><span class="s">글"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2024-06-15</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">hidden</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>게시할 준비가 되면 <code class="language-plaintext highlighter-rouge">hidden</code> 필드를 제거하거나 <code class="language-plaintext highlighter-rouge">false</code>로 설정하세요.</p>]]></content><author><name></name></author><category term="General" /><category term="example" /><category term="draft" /><summary type="html"><![CDATA[공개 목록에 표시되지 않는 숨김/초안 글의 예시입니다.]]></summary></entry><entry xml:lang="ja"><title type="html">下書き記事の例</title><link href="http://localhost:4000/posts/2024-06-15-draft-example/ja/" rel="alternate" type="text/html" title="下書き記事の例" /><published>2024-06-15T00:00:00+09:00</published><updated>2024-06-15T00:00:00+09:00</updated><id>http://localhost:4000/posts/2024-06-15-draft-example/ja</id><content type="html" xml:base="http://localhost:4000/posts/2024-06-15-draft-example/ja/"><![CDATA[<p>これは非公開記事の例です。フロントマターに<code class="language-plaintext highlighter-rouge">hidden: true</code>を設定すると：</p>
+
+<ol>
+  <li>ブログホームページのリストに<strong>表示されません</strong></li>
+  <li>カテゴリーやタグページに<strong>表示されません</strong></li>
+  <li>カテゴリー/タグの統計に<strong>カウントされません</strong></li>
+  <li>プレビュー目的で直接URLから<strong>アクセス可能です</strong></li>
+</ol>
+
+<h2 id="使い方">使い方</h2>
+
+<p>記事を非公開にするには、フロントマターに<code class="language-plaintext highlighter-rouge">hidden: true</code>を追加します：</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">私の下書き記事"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2024-06-15</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">hidden</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>公開する準備ができたら、<code class="language-plaintext highlighter-rouge">hidden</code>フィールドを削除するか<code class="language-plaintext highlighter-rouge">false</code>に設定してください。</p>]]></content><author><name></name></author><category term="General" /><category term="example" /><category term="draft" /><summary type="html"><![CDATA[公開リストに表示されない非公開/下書き記事の例です。]]></summary></entry><entry xml:lang="en"><title type="html">Example Draft Post</title><link href="http://localhost:4000/posts/2024-06-15-draft-example/en/" rel="alternate" type="text/html" title="Example Draft Post" /><published>2024-06-15T00:00:00+09:00</published><updated>2024-06-15T00:00:00+09:00</updated><id>http://localhost:4000/posts/2024-06-15-draft-example/en</id><content type="html" xml:base="http://localhost:4000/posts/2024-06-15-draft-example/en/"><![CDATA[<p>This is an example of a hidden post. When you set <code class="language-plaintext highlighter-rouge">hidden: true</code> in the front matter, the post:</p>
+
+<ol>
+  <li><strong>Won’t appear</strong> in the blog homepage listing</li>
+  <li><strong>Won’t appear</strong> in category or tag pages</li>
+  <li><strong>Won’t be counted</strong> in category/tag statistics</li>
+  <li><strong>Is still accessible</strong> via its direct URL for preview purposes</li>
+</ol>
+
+<h2 id="how-to-use">How to Use</h2>
+
+<p>To hide a post, simply add <code class="language-plaintext highlighter-rouge">hidden: true</code> to your front matter:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">Draft</span><span class="nv"> </span><span class="s">Post"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2024-06-15</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">hidden</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>When you’re ready to publish, either remove the <code class="language-plaintext highlighter-rouge">hidden</code> field or set it to <code class="language-plaintext highlighter-rouge">false</code>.</p>]]></content><author><name></name></author><category term="General" /><category term="example" /><category term="draft" /><summary type="html"><![CDATA[This is an example of a hidden/draft post that won't appear in public listings.]]></summary></entry><entry xml:lang="en"><title type="html">Hello World</title><link href="http://localhost:4000/posts/2024-06-01-hello-world/en/" rel="alternate" type="text/html" title="Hello World" /><published>2024-06-01T00:00:00+09:00</published><updated>2024-06-01T00:00:00+09:00</updated><id>http://localhost:4000/posts/2024-06-01-hello-world/en</id><content type="html" xml:base="http://localhost:4000/posts/2024-06-01-hello-world/en/"><![CDATA[<p>Welcome to your new blog. This post is written in Markdown. You can add more posts by creating new <code class="language-plaintext highlighter-rouge">.md</code> files in this folder.</p>]]></content><author><name></name></author><category term="General" /><category term="getting-started" /><category term="welcome" /><summary type="html"><![CDATA[This is your first blog post!]]></summary></entry><entry xml:lang="ko"><title type="html">안녕하세요</title><link href="http://localhost:4000/posts/2024-06-01-hello-world/ko/" rel="alternate" type="text/html" title="안녕하세요" /><published>2024-06-01T00:00:00+09:00</published><updated>2024-06-01T00:00:00+09:00</updated><id>http://localhost:4000/posts/2024-06-01-hello-world/ko</id><content type="html" xml:base="http://localhost:4000/posts/2024-06-01-hello-world/ko/"><![CDATA[<p>새 블로그에 오신 것을 환영합니다. 이 글은 마크다운으로 작성되었습니다. 이 폴더에 새 <code class="language-plaintext highlighter-rouge">.md</code> 파일을 만들어 더 많은 글을 추가할 수 있습니다.</p>]]></content><author><name></name></author><category term="General" /><category term="getting-started" /><category term="welcome" /><summary type="html"><![CDATA[첫 번째 블로그 글입니다!]]></summary></entry><entry xml:lang="ja"><title type="html">こんにちは世界</title><link href="http://localhost:4000/posts/2024-06-01-hello-world/ja/" rel="alternate" type="text/html" title="こんにちは世界" /><published>2024-06-01T00:00:00+09:00</published><updated>2024-06-01T00:00:00+09:00</updated><id>http://localhost:4000/posts/2024-06-01-hello-world/ja</id><content type="html" xml:base="http://localhost:4000/posts/2024-06-01-hello-world/ja/"><![CDATA[<p>新しいブログへようこそ。この記事はマークダウンで書かれています。このフォルダに新しい<code class="language-plaintext highlighter-rouge">.md</code>ファイルを作成することで、より多くの記事を追加できます。</p>]]></content><author><name></name></author><category term="General" /><category term="getting-started" /><category term="welcome" /><summary type="html"><![CDATA[最初のブログ記事です！]]></summary></entry></feed>
