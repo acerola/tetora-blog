@@ -49,9 +49,6 @@ sidebar:
   all_posts: "All"
   rss_feed: "RSS Feed"
 
-footer:
-  copyright: "Tetora's blog. All rights reserved."
-
 common:
   post_singular: "post"
   post_plural: "posts"

@@ -49,9 +49,6 @@ sidebar:
   all_posts: "전체"
   rss_feed: "RSS 피드"
 
-footer:
-  copyright: "테토라 블로그. 모든 권리 보유."
-
 common:
   post_singular: "개 글"
   post_plural: "개 글"
