@@ -6,6 +6,7 @@ layout: post
 tags: [Book, programming]
 category: Book
 lang: ko
+hidden: true
 ref: computer-architecture
 ---
 
