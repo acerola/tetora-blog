@@ -35,14 +35,39 @@
 
             {% comment %} Determine the URL for this language {% endcomment %}
             {% if page.ref %}
+              {% comment %} Article: try to find translated version {% endcomment %}
               {% assign translated_post = site.articles | where: "ref", page.ref | where: "lang", lang_code | first %}
               {% if translated_post %}
                 {% assign lang_url = translated_post.url %}
               {% else %}
-                {% assign lang_url = "/" | append: lang_code | append: "/" %}
+                {% comment %} No translation - replace lang in current URL path {% endcomment %}
+                {% assign current_url = page.url | split: '/' %}
+                {% assign lang_url_parts = "" | split: "" %}
+                {% for part in current_url %}
+                  {% if forloop.first %}
+                    {% comment %} Skip empty first element {% endcomment %}
+                  {% elsif site.languages contains part %}
+                    {% assign lang_url_parts = lang_url_parts | push: lang_code %}
+                  {% else %}
+                    {% assign lang_url_parts = lang_url_parts | push: part %}
+                  {% endif %}
+                {% endfor %}
+                {% assign lang_url = lang_url_parts | join: '/' | prepend: '/' %}
               {% endif %}
             {% else %}
-              {% assign lang_url = "/" | append: lang_code | append: "/" %}
+              {% comment %} Non-article page: replace language prefix in URL {% endcomment %}
+              {% assign current_url = page.url | split: '/' %}
+              {% assign lang_url_parts = "" | split: "" %}
+              {% for part in current_url %}
+                {% if forloop.first %}
+                  {% comment %} Skip empty first element {% endcomment %}
+                {% elsif site.languages contains part %}
+                  {% assign lang_url_parts = lang_url_parts | push: lang_code %}
+                {% else %}
+                  {% assign lang_url_parts = lang_url_parts | push: part %}
+                {% endif %}
+              {% endfor %}
+              {% assign lang_url = lang_url_parts | join: '/' | prepend: '/' %}
             {% endif %}
 
             <a href="{{ lang_url | relative_url }}"
