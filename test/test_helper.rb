@@ -29,6 +29,42 @@ module SiteTestSupport
 
     [site, destination]
   end
+
+  # Discovers all articles in _articles/ by reading front matter from disk.
+  # Returns an array of hashes with :slug, :lang, :title, :category, :tags, :hidden, :date, :ref.
+  def self.articles
+    return @articles if defined?(@articles)
+    articles_dir = File.join(ROOT, "_articles")
+    @articles = []
+    Dir.glob(File.join(articles_dir, "*")).sort.each do |folder|
+      next unless File.directory?(folder)
+      slug = File.basename(folder)
+      Dir.glob(File.join(folder, "*.md")).sort.each do |file|
+        lang = File.basename(file, ".md")
+        fm = parse_front_matter(file)
+        @articles << {
+          slug: slug,
+          lang: lang,
+          title: fm["title"],
+          category: fm["category"],
+          tags: fm["tags"] || [],
+          hidden: fm["hidden"] == true,
+          date: fm["date"],
+          ref: fm["ref"]
+        }
+      end
+    end
+    @articles
+  end
+
+  def self.parse_front_matter(file)
+    content = File.read(file)
+    if content =~ /\A---\n(.*?)\n---/m
+      YAML.safe_load($1, permitted_classes: [Date, Time]) || {}
+    else
+      {}
+    end
+  end
 end
 
 class TestRunner

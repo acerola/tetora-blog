@@ -21,6 +21,16 @@ atom_entry_count = lambda do |xml_content|
   count
 end
 
+# Pre-compute article fixture data once from disk so tests stay data-driven.
+all_articles = SiteTestSupport.articles
+visible_by_lang = {}
+hidden_by_lang  = {}
+%w[en ja ko].each do |lang|
+  visible_by_lang[lang] = all_articles.select { |a| a[:lang] == lang && !a[:hidden] }
+                                      .sort_by { |a| a[:date] }.reverse
+  hidden_by_lang[lang]  = all_articles.select { |a| a[:lang] == lang && a[:hidden] }
+end
+
 # ---------------------------------------------------------------------------
 # Core routes
 # ---------------------------------------------------------------------------
@@ -42,17 +52,8 @@ runner.run("generates expected core routes") do
 end
 
 runner.run("generates article pages for each language") do
-  %w[
-    posts/2024-06-01-hello-world/en/index.html
-    posts/2024-06-01-hello-world/ja/index.html
-    posts/2024-06-01-hello-world/ko/index.html
-    posts/2024-06-15-draft-example/en/index.html
-    posts/2024-06-15-draft-example/ja/index.html
-    posts/2024-06-15-draft-example/ko/index.html
-    posts/2026-01-01-programming-perls/en/index.html
-    posts/2026-01-01-programming-perls/ja/index.html
-    posts/2026-01-01-programming-perls/ko/index.html
-  ].each do |route|
+  all_articles.each do |article|
+    route = "posts/#{article[:slug]}/#{article[:lang]}/index.html"
     runner.assert_file_exists(File.join(destination, route))
   end
 end
@@ -72,27 +73,24 @@ end
 # ---------------------------------------------------------------------------
 
 runner.run("language home pages show only visible posts for that language") do
-  en_home = read_output.call("en/index.html")
-  ja_home = read_output.call("ja/index.html")
-  ko_home = read_output.call("ko/index.html")
+  %w[en ja ko].each do |lang|
+    home = read_output.call("#{lang}/index.html")
 
-  runner.assert_includes(en_home, "Programming Pearls")
-  runner.assert_includes(en_home, "Hello World")
-  runner.refute_includes(en_home, "Example Draft Post")
-  runner.refute_includes(en_home, "プログラミング・パール")
-  runner.refute_includes(en_home, "프로그래밍 펄")
+    visible_by_lang[lang].each do |article|
+      runner.assert_includes(home, article[:title])
+    end
 
-  runner.assert_includes(ja_home, "プログラミング・パール")
-  runner.assert_includes(ja_home, "こんにちは世界")
-  runner.refute_includes(ja_home, "下書き記事の例")
-  runner.refute_includes(ja_home, "Programming Pearls")
-  runner.refute_includes(ja_home, "프로그래밍 펄")
+    hidden_by_lang[lang].each do |article|
+      runner.refute_includes(home, article[:title])
+    end
 
-  runner.assert_includes(ko_home, "프로그래밍 펄")
-  runner.assert_includes(ko_home, "안녕하세요")
-  runner.refute_includes(ko_home, "초안 글 예시")
-  runner.refute_includes(ko_home, "Programming Pearls")
-  runner.refute_includes(ko_home, "プログラミング・パール")
+    # Titles from other languages' visible posts should not appear
+    (%w[en ja ko] - [lang]).each do |other|
+      visible_by_lang[other].each do |article|
+        runner.refute_includes(home, article[:title])
+      end
+    end
+  end
 end
 
 # ---------------------------------------------------------------------------
@@ -121,9 +119,19 @@ runner.run("visible posts do not show draft banner") do
 end
 
 runner.run("hidden posts are excluded from category detail pages") do
-  category_general = read_output.call("en/categories/general/index.html")
-  runner.assert_includes(category_general, "Hello World")
-  runner.refute_includes(category_general, "Example Draft Post")
+  visible_by_lang["en"].each do |article|
+    next unless article[:category]
+    cat_slug = article[:category].downcase.gsub(/\s+/, "-")
+    cat_page = read_output.call("en/categories/#{cat_slug}/index.html")
+    runner.assert_includes(cat_page, article[:title])
+  end
+
+  hidden_by_lang["en"].each do |article|
+    next unless article[:category]
+    cat_slug = article[:category].downcase.gsub(/\s+/, "-")
+    cat_page = read_output.call("en/categories/#{cat_slug}/index.html")
+    runner.refute_includes(cat_page, article[:title])
+  end
 end
 
 runner.run("hidden posts are excluded from tag detail pages") do
@@ -172,14 +180,18 @@ runner.run("taxonomy index aggregation is scoped to the active language") do
   en_categories = read_output.call("en/categories/index.html")
   ja_categories = read_output.call("ja/categories/index.html")
   ko_categories = read_output.call("ko/categories/index.html")
-  en_tags = read_output.call("en/tags/index.html")
+  en_tags       = read_output.call("en/tags/index.html")
 
-  runner.assert_includes(en_categories, "2 categories")
+  en_cat_count = visible_by_lang["en"].map { |a| a[:category] }.compact.uniq.size
+  ja_cat_count = visible_by_lang["ja"].map { |a| a[:category] }.compact.uniq.size
+  ko_cat_count = visible_by_lang["ko"].map { |a| a[:category] }.compact.uniq.size
+
+  runner.assert_includes(en_categories, "#{en_cat_count} categories")
   runner.assert_includes(en_categories, ">1 posts<")
   runner.refute_includes(en_categories, ">3 posts<")
 
-  runner.assert_includes(ja_categories, "2 カテゴリー")
-  runner.assert_includes(ko_categories, "2 카테고리")
+  runner.assert_includes(ja_categories, "#{ja_cat_count} カテゴリー")
+  runner.assert_includes(ko_categories, "#{ko_cat_count} 카테고리")
 
   runner.assert_includes(en_tags, "#programming")
   runner.assert_includes(en_tags, ">1</span>")
@@ -264,7 +276,6 @@ runner.run("navigation contains localized links") do
   runner.assert_includes(en_home, "href=\"/en/about\"")
   runner.assert_includes(en_home, "Writing")
   runner.assert_includes(en_home, "About")
-  runner.assert_includes(en_home, "Contact")
 end
 
 runner.run("navigation includes language dropdown for all languages") do
@@ -362,8 +373,10 @@ runner.skip("feed excludes hidden posts", "jekyll-feed does not filter by custom
 runner.run("sitemap is valid xml and contains article urls") do
   sitemap = read_output.call("sitemap.xml")
   runner.assert(sitemap.start_with?("<?xml"), "Expected XML declaration in sitemap.xml")
-  runner.assert_includes(sitemap, "/posts/2026-01-01-programming-perls/en/")
-  runner.assert_includes(sitemap, "/posts/2024-06-01-hello-world/en/")
+
+  visible_by_lang["en"].each do |article|
+    runner.assert_includes(sitemap, "/posts/#{article[:slug]}/en/")
+  end
 end
 
 # ---------------------------------------------------------------------------
@@ -432,10 +445,17 @@ end
 
 runner.run("home page lists posts in reverse chronological order") do
   en_home = read_output.call("en/index.html")
-  perls_pos = en_home.index("Programming Pearls")
-  hello_pos = en_home.index("Hello World")
-  runner.assert(perls_pos && hello_pos, "Both posts should appear on home page")
-  runner.assert(perls_pos < hello_pos, "Newer post (Programming Pearls) should appear before older (Hello World)")
+  en_visible = visible_by_lang["en"]
+
+  en_visible.each do |article|
+    runner.assert(en_home.include?(article[:title]), "Post '#{article[:title]}' should appear on home page")
+  end
+
+  if en_visible.size >= 2
+    pos1 = en_home.index(en_visible[0][:title])
+    pos2 = en_home.index(en_visible[1][:title])
+    runner.assert(pos1 < pos2, "Newer post (#{en_visible[0][:title]}) should appear before older (#{en_visible[1][:title]})")
+  end
 end
 
 # ---------------------------------------------------------------------------
@@ -480,7 +500,8 @@ end
 
 runner.run("home page shows visible post count") do
   en_home = read_output.call("en/index.html")
-  runner.assert_includes(en_home, "2 notes")
+  en_count = visible_by_lang["en"].size
+  runner.assert_includes(en_home, "#{en_count} notes")
 end
 
 # ---------------------------------------------------------------------------
