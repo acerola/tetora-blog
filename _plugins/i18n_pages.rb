@@ -51,6 +51,12 @@ module I18nPages
             "title" => t.dig("tags", "title") || "Tags",
             "permalink" => "/#{lang}/tags/" },
           "{% include tags-content.html %}")
+
+        # Atom feed: /{lang}/feed.xml
+        add_page(site, lang, "feed.xml",
+          { "layout" => nil, "lang" => lang,
+            "permalink" => "/#{lang}/feed.xml" },
+          "{% include feed-content.xml %}")
       end
 
       # Top-level /categories/ and /tags/ (no lang — defaults to site.default_lang)
