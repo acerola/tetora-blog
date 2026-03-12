@@ -8,7 +8,7 @@ module SiteTestSupport
   ROOT = File.expand_path("..", __dir__)
 
   def self.build_site
-    destination = Dir.mktmpdir("tetora-blog-test-site-")
+    destination = Dir.mktmpdir("oxymoron-blog-test-site-")
 
     base_config = YAML.safe_load_file(
       File.join(ROOT, "_config.yml"),

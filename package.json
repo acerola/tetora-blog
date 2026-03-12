@@ -1,5 +1,5 @@
 {
-  "name": "tetora-blog",
+  "name": "oxymoron-blog",
   "private": true,
   "scripts": {
     "build:css": "tailwindcss -c tailwind.config.js -i ./assets/css/tailwind.src.css -o ./assets/css/tailwind.css --minify",

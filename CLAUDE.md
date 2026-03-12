@@ -1,12 +1,12 @@
-# CLAUDE.md - AI Assistant Guide for Tetora's Blog
+# CLAUDE.md - AI Assistant Guide for Oxymoron's Blog
 
 This document provides comprehensive guidance for AI assistants working with this codebase.
 
 ## Project Overview
 
-**Tetora's Blog** is a multilingual personal blog built with Jekyll, focusing on "calm building" - notes on programming, technology, and software development.
+**Oxymoron's Blog** is a multilingual personal blog built with Jekyll, focusing on "calm building" - notes on programming, technology, and software development.
 
-- **URL**: https://tetora.blog
+- **URL**: https://oxymoron.blog
 - **Framework**: Jekyll 4.3+ (Ruby static site generator)
 - **Languages**: English (default), Korean, Japanese
 - **Deployment**: GitHub Pages via GitHub Actions
@@ -33,7 +33,7 @@ This document provides comprehensive guidance for AI assistants working with thi
 ## Project Structure
 
 ```
-tetora-blog/
+oxymoron-blog/
 ├── _articles/              # Blog posts (multilingual)
 │   └── YYYY-MM-DD-slug/   # Each article folder contains:
 │       ├── en.md          #   English version
@@ -143,7 +143,7 @@ Edit files in `_data/translations/`:
 ```yaml
 # en.yml example
 site:
-  title: "Tetora's Blog"
+  title: "Oxymoron's Blog"
 nav:
   home: "Home"
   about: "About"

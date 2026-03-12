@@ -1,8 +1,8 @@
-# Tetora's Blog
+# Oxymoron's Blog
 
 A multilingual personal blog built with [Jekyll](https://jekyllrb.com/). Notes on calm building — programming, technology, and software development.
 
-**Live**: [tetora.blog](https://tetora.blog)
+**Live**: [oxymoron.blog](https://oxymoron.blog)
 
 ## Tech Stack
 
@@ -60,7 +60,7 @@ The test suite covers route generation, multilingual filtering, taxonomy scoping
 ## Project Structure
 
 ```
-tetora-blog/
+oxymoron-blog/
 ├── _articles/                  # Blog posts (multilingual collection)
 │   └── YYYY-MM-DD-slug/
 │       ├── en.md              #   English version

@@ -404,7 +404,7 @@ runner.run("footer includes copyright notice") do
   en_home = read_output.call("en/index.html")
   year = Time.now.year.to_s
   runner.assert_includes(en_home, year)
-  runner.assert_includes(en_home, "Tetora")
+  runner.assert_includes(en_home, "Oxymoron")
 end
 
 # ---------------------------------------------------------------------------

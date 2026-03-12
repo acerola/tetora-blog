@@ -1,6 +1,6 @@
-title: "Tetora's Blog"
+title: "Oxymoron's Blog"
 description: "Notes on calm building"
-url: "https://tetora.blog"
+url: "https://oxymoron.blog"
 baseurl: ""
 permalink: /posts/:slug/
 markdown: kramdown
