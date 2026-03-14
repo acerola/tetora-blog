@@ -65,7 +65,7 @@ end
 runner.run("root index.html redirects to /en/") do
   root = read_output.call("index.html")
   runner.assert_includes(root, 'url=/en/')
-  runner.assert_includes(root, 'href="/en/"')
+  runner.assert_includes(root, 'window.location.replace("/en/")')
 end
 
 # ---------------------------------------------------------------------------
